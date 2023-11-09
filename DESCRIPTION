@@ -10,7 +10,10 @@ License: MIT + file LICENSE
 URL: https://github.com/dhersz/rosmium
 BugReports: https://github.com/dhersz/rosmium/issues
 Imports: 
-    processx
+    checkmate,
+    geojsonsf,
+    processx,
+    sf
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
