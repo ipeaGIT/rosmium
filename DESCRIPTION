@@ -1,0 +1,16 @@
+Package: rosmium
+Title: Osmium Wrapper
+Version: 0.0.0.9000
+Authors@R: 
+    person("Daniel", "Herszenhut", , "dhersz@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8066-1105"))
+Description: Allows one to use Osmium from R. Osmium is a multipurpose
+    command line tool for working with OpenStreetMap.
+License: MIT + file LICENSE
+URL: https://github.com/dhersz/rosmium
+BugReports: https://github.com/dhersz/rosmium/issues
+Imports: 
+    processx
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
