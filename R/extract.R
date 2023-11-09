@@ -3,26 +3,36 @@ extract <- function(input_path,
                     output_path,
                     overwrite = FALSE,
                     echo = TRUE,
+                    echo_cmd = FALSE,
                     spinner = TRUE) {
   checkmate::assert_file_exists(input_path)
   checkmate::assert_multi_class(borders, c("sf", "bbox"))
-  checkmate::assert_string(output_path)
   checkmate::assert_logical(overwrite, any.missing = FALSE, len = 1)
   checkmate::assert_logical(echo, any.missing = FALSE, len = 1)
+  checkmate::assert_logical(echo_cmd, any.missing = FALSE, len = 1)
   checkmate::assert_logical(spinner, any.missing = FALSE, len = 1)
+  checkmate::assert_string(output_path)
 
   border_arg <- create_border_input(borders)
   output_arg <- paste0("--output=", output_path)
+  overwrite_arg <- if (overwrite) "--overwrite" else character()
 
   args <- c(
     "extract",
     input_path,
     border_arg,
     output_arg,
-    "--strategy=complete_ways"
+    "--strategy=complete_ways",
+    overwrite_arg
   )
 
-  logs <- processx::run("osmium", args, echo = echo, spinner = spinner)
+  logs <- processx::run(
+    "osmium",
+    args,
+    echo = echo,
+    spinner = spinner,
+    echo_cmd = echo_cmd
+  )
 
   return(logs)
 }
