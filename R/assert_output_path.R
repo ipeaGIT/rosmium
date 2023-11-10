@@ -1,7 +1,28 @@
-assert_output_path <- function(output_path, overwrite) {
-  valid_formats <- get_valid_output_formats()
+check_output_path_multi_ext <- function(output_path, overwrite) {
+  valid_output_res <- checkmate::check_path_for_output(
+    output_path,
+    overwrite = overwrite
+  )
+  if (!isTRUE(valid_output_res)) return(valid_output_res)
 
+  valid_formats <- get_valid_output_formats()
+  output_extension <- paste0(".", tools::file_ext(output_path))
+
+  if (! output_extension %in% valid_formats) {
+    return(
+      paste0(
+        "Invalid file extension, must be one of: ",
+        paste(valid_formats, collapse = ", "), "."
+      )
+    )
+  }
+
+  return(TRUE)
 }
+
+assert_output_path_multi_ext <- checkmate::makeAssertionFunction(
+  check_output_path_multi_ext
+)
 
 get_valid_output_formats <- function() {
   # valid output formats taken from
