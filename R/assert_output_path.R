@@ -5,6 +5,8 @@ check_output_path_multi_ext <- function(output_path, overwrite) {
   )
   if (!isTRUE(valid_output_res)) return(valid_output_res)
 
+  # FIXME: this is failing for extensions such as .osm.gz because
+  # tools::file_ext only recognizes .gz as the file extension
   valid_formats <- get_valid_output_formats()
   output_extension <- paste0(".", tools::file_ext(output_path))
 

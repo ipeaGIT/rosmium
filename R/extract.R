@@ -34,7 +34,7 @@ extract <- function(input_path,
     echo_cmd = echo_cmd
   )
 
-  return(output_path)
+  return(normalizePath(output_path))
 }
 
 create_border_input <- function(x) {

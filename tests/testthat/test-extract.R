@@ -4,7 +4,7 @@ lines <- sf::st_read(pbf_path, layer = "lines", quiet = TRUE)
 bbox <- sf::st_bbox(lines)
 bbox_polygon <- sf::st_as_sf(sf::st_as_sfc(bbox))
 
-smaller_bbox_poly <- sf::st_buffer(sf::st_transform(bbox_polygon, 5880), -3000)
+smaller_bbox_poly <- sf::st_buffer(sf::st_transform(bbox_polygon, 5880), -4000)
 smaller_bbox_poly <- sf::st_transform(smaller_bbox_poly, 4326)
 
 linestring <- sf::st_cast(smaller_bbox_poly, "LINESTRING")
@@ -64,4 +64,13 @@ test_that("input should be correct", {
   expect_error(tester(spinner = 0))
   expect_error(tester(spinner = NA))
   expect_error(tester(spinner = c(TRUE, TRUE)))
+})
+
+test_that("returns normalized path to output and writes output to path", {
+  tmpfile <- tempfile(fileext = ".osm.pbf")
+
+  result <- tester(output_path = tmpfile)
+  expect_identical(result, normalizePath(tmpfile))
+
+  expect_snapshot_file(tmpfile, name = "tester_default_output")
 })
