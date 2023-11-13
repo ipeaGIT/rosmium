@@ -4,3 +4,5 @@
 ^\.pre-commit-config\.yaml$
 ^codemeta\.json$
 ^\.github$
+^README\.Rmd$
+^README\.html$

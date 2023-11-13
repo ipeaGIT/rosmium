@@ -1,3 +1,15 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # rosmium
 
@@ -10,8 +22,8 @@ coverage](https://codecov.io/gh/dhersz/rosmium/branch/main/graph/badge.svg)](htt
 [![Repo
 status](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 
-Allows one to use Osmium from R. Osmium is a multipurpose command line
-tool for working with OpenStreetMap.
+Allows one to use Osmium from R. Osmium is a multipurpose command line tool for
+working with OpenStreetMap.
 
 ## Installation
 
