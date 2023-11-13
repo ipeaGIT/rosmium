@@ -23,11 +23,11 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {os: windows-latest, r: 'release', conda-prefix: 'C:\Miniconda\envs\my-env'}
-        - {os: macOS-latest, r: 'release', conda-prefix: '/usr/local/miniconda/envs/my-env'}
-        - {os: ubuntu-20.04, r: 'devel', rspm: 'https://packagemanager.rstudio.com/cran/__linux__/focal/latest', conda-prefix: '/usr/share/miniconda/envs/my-env'}
-        - {os: ubuntu-20.04, r: 'release', rspm: 'https://packagemanager.rstudio.com/cran/__linux__/focal/latest', conda-prefix: '/usr/share/miniconda/envs/my-env'}
-        - {os: ubuntu-20.04, r: 'oldrel', rspm: 'https://packagemanager.rstudio.com/cran/__linux__/focal/latest', conda-prefix: '/usr/share/miniconda/envs/my-env'}
+        - {os: windows-latest, r: 'release'}
+        - {os: macOS-latest, r: 'release'}
+        - {os: ubuntu-20.04, r: 'devel'}
+        - {os: ubuntu-20.04, r: 'release'}
+        - {os: ubuntu-20.04, r: 'oldrel'}
 
     env:
       RSPM: ${{ matrix.config.rspm }}
@@ -40,33 +40,19 @@ jobs:
         with:
           activate-environment: my-env
 
-      - run: |
-          conda info
-          conda info --envs
-
-      - name: Cache conda environment
-        uses: actions/cache@v3
-        env:
-          CACHE_NUMBER: 0
-        with:
-          path: ${{ matrix.config.conda-prefix }}
-          key: ${{ matrix.config.os }}-conda-${{ hashFiles('${{ matrix.config.conda-prefix }}/conda-meta/history') }}-r-${{ matrix.config.r }}-${{ env.CACHE_NUMBER }}
+      - name: Update PATH env variable to include conda bin dir (Linux and MacOS)
+        run: echo "PATH=$PATH" >> $GITHUB_ENV
+        if: runner.os != 'Windows'
 
       - name: Install osmium
         run: conda install -c conda-forge osmium-tool 
 
-      - name: Check if osmium is installed
-        run: osmium version
-
-      - uses: r-lib/actions/setup-r@v2
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
         id: install-r
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
-
-      - name: Update PATH env variable to include conda bin dir (Linux and MacOS)
-        run: echo "PATH=$PATH" >> $GITHUB_ENV
-        if: runner.os != 'Windows'
 
       - name: Install pak and query dependencies
         run: |
