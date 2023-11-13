@@ -5,6 +5,8 @@ extract <- function(input_path,
                     echo = TRUE,
                     echo_cmd = FALSE,
                     spinner = TRUE) {
+  assert_osmium_is_installed()
+
   checkmate::assert_file_exists(input_path)
   checkmate::assert_logical(overwrite, any.missing = FALSE, len = 1)
   checkmate::assert_logical(echo, any.missing = FALSE, len = 1)
