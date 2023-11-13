@@ -6,10 +6,10 @@ on:
     branches:
       - main
 
-name: check
+name: check_as_cran
 
 jobs:
-  check:
+  check_as_cran:
     # shell needs to use login mode so conda env activation can work
     defaults:
       run:
