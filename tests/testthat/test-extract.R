@@ -74,3 +74,14 @@ test_that("returns normalized path to output and writes output to path", {
 
   expect_snapshot_file(tmpfile, name = "tester_default_output")
 })
+
+test_that("works with bbox and results in same output as with equiv poly", {
+  tmpfile <- tempfile(fileext = ".osm.pbf")
+  smaller_bbox <- sf::st_bbox(smaller_bbox_poly)
+
+  result <- tester(borders = smaller_bbox, output_path = tmpfile)
+  expect_identical(result, normalizePath(tmpfile))
+
+  # same snapshot as the above test, which was generated with the polygon
+  expect_snapshot_file(tmpfile, name = "tester_default_output")
+})
