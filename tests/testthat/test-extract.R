@@ -13,36 +13,36 @@ geomcollection <- sf::st_as_sf(
 )
 
 tester <- function(input_path = pbf_path,
-                   borders = smaller_bbox_poly,
+                   extent = smaller_bbox_poly,
                    output_path = tempfile(fileext = ".osm.pbf"),
                    overwrite = FALSE,
-                   echo = TRUE,
                    echo_cmd = FALSE,
+                   echo = TRUE,
                    spinner = TRUE) {
-  extract(input_path, borders, output_path, overwrite, echo, echo_cmd, spinner)
+  extract(input_path, extent, output_path, overwrite, echo_cmd, echo, spinner)
 }
 
 test_that("input should be correct", {
   expect_error(tester(1))
   expect_error(tester("a.osm.pbf"))
 
-  expect_error(tester(borders = unclass(bbox)))
+  expect_error(tester(extent = unclass(bbox)))
 
   bad_bbox <- bbox
   bad_bbox[4] <- Inf
-  expect_error(tester(borders = bad_bbox))
+  expect_error(tester(extent = bad_bbox))
   bad_bbox[4] <- NA
-  expect_error(tester(borders = bad_bbox))
+  expect_error(tester(extent = bad_bbox))
   bad_bbox[4] <- 25
   names(bad_bbox)[4] <- "oi"
-  expect_error(tester(borders = bad_bbox))
+  expect_error(tester(extent = bad_bbox))
   names(bad_bbox)[4] <- "ymax"
   bad_bbox[5] <- 12
-  expect_error(tester(borders = bad_bbox))
+  expect_error(tester(extent = bad_bbox))
 
-  expect_error(tester(borders = rbind(bbox_polygon, bbox_polygon)))
-  expect_error(tester(borders = linestring))
-  expect_error(tester(borders = geomcollection))
+  expect_error(tester(extent = rbind(bbox_polygon, bbox_polygon)))
+  expect_error(tester(extent = linestring))
+  expect_error(tester(extent = geomcollection))
 
   tmpfile <- tempfile(fileext = ".osm.pbf")
   file.create(tmpfile)
@@ -79,9 +79,33 @@ test_that("works with bbox and results in same output as with equiv poly", {
   tmpfile <- tempfile(fileext = ".osm.pbf")
   smaller_bbox <- sf::st_bbox(smaller_bbox_poly)
 
-  result <- tester(borders = smaller_bbox, output_path = tmpfile)
+  result <- tester(extent = smaller_bbox, output_path = tmpfile)
   expect_identical(result, normalizePath(tmpfile))
 
   # same snapshot as the above test, which was generated with the polygon
   expect_snapshot_file(tmpfile, name = "tester_default_output")
 })
+
+test_that("overwrite arguments works", {
+  tmpfile <- tempfile(fileext = ".osm.pbf")
+
+  result <- tester(output_path = tmpfile)
+
+  expect_error(tester(output_path = tmpfile, overwrite = FALSE))
+  expect_no_error(tester(output_path = tmpfile, overwrite = TRUE))
+})
+
+test_that("echo_cmd argument works", {
+  # using spinner = FALSE to make sure it doesn't mess up with the test
+  expect_output(
+    a <- tester(echo_cmd = TRUE, spinner = FALSE),
+    regexp = "^Running osmium extract"
+  )
+
+  output <- capture.output(a <- tester(echo_cmd = FALSE, spinner = FALSE))
+  expect_identical(output, character(0))
+})
+
+# spinner doesn't work on non-interactive sessions and none of the queries calls
+# we have generated output anything to stdout/stderr, so we're skipping the
+# 'spinner' and 'echo' argument tests
