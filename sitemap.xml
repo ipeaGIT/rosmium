@@ -19,6 +19,12 @@
     <loc>/reference/assert_osmium_is_installed.html</loc>
   </url>
   <url>
+    <loc>/reference/extract.html</loc>
+  </url>
+  <url>
+    <loc>/reference/file_formats.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
 </urlset>
