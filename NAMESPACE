@@ -2,3 +2,4 @@
 
 export(assert_osmium_is_installed)
 export(extract)
+export(tags_filter)
