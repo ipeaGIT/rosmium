@@ -141,7 +141,6 @@ tags_filter <- function(input_path,
   assert_osmium_is_installed()
 
   checkmate::assert_file_exists(input_path)
-  checkmate::assert_string(filters)
   checkmate::assert_logical(invert_match, any.missing = FALSE, len = 1)
   checkmate::assert_logical(omit_referenced, any.missing = FALSE, len = 1)
   checkmate::assert_logical(remove_tags, any.missing = FALSE, len = 1)
@@ -150,7 +149,8 @@ tags_filter <- function(input_path,
   checkmate::assert_logical(echo, any.missing = FALSE, len = 1)
   checkmate::assert_logical(spinner, any.missing = FALSE, len = 1)
   checkmate::assert_logical(verbose, any.missing = FALSE, len = 1)
-  checkmate::assert_logical(verbose, any.missing = FALSE, len = 1)
+  checkmate::assert_logical(progress, any.missing = FALSE, len = 1)
+  assert_output_path_multi_ext(output_path, overwrite)
 
   filters_arg <- assert_and_assign_filters(filters)
   output_arg <- paste0("--output=", output_path)
@@ -186,6 +186,8 @@ tags_filter <- function(input_path,
 }
 
 assert_and_assign_filters <- function(filters) {
+  checkmate::assert_string(filters)
+
   filters_input <- unlist(strsplit(filters, " "))
 
   assert_filters(filters_input, .var.name = "filters")
