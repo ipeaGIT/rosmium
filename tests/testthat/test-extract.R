@@ -15,11 +15,23 @@ geomcollection <- sf::st_as_sf(
 tester <- function(input_path = pbf_path,
                    extent = smaller_bbox_poly,
                    output_path = tempfile(fileext = ".osm.pbf"),
+                   strategy = c("complete_ways", "smart", "simple"),
                    overwrite = FALSE,
                    echo_cmd = FALSE,
                    echo = TRUE,
-                   spinner = TRUE) {
-  extract(input_path, extent, output_path, overwrite, echo_cmd, echo, spinner)
+                   spinner = TRUE,
+                   verbose = FALSE) {
+  extract(
+    input_path,
+    extent,
+    output_path,
+    strategy,
+    overwrite,
+    echo_cmd,
+    echo,
+    spinner,
+    verbose
+  )
 }
 
 test_that("input should be correct", {
@@ -48,6 +60,10 @@ test_that("input should be correct", {
   file.create(tmpfile)
   expect_error(tester(output_path = tmpfile, overwrite = FALSE))
   expect_error(tester(output_path = "a.gz"))
+
+  expect_error(tester(strategy = 0))
+  expect_error(tester(strategy = c("complete_ways", "simple")))
+  expect_error(tester(strategy = "oi"))
 
   expect_error(tester(overwrite = 0))
   expect_error(tester(overwrite = NA))
@@ -95,8 +111,27 @@ test_that("overwrite arguments works", {
   expect_no_error(tester(output_path = tmpfile, overwrite = TRUE))
 })
 
+test_that("strategy argument works", {
+  expect_output(
+    a <- tester(spinner = FALSE, verbose = TRUE),
+    regexp = "Running 'complete_ways' strategy"
+  )
+
+  expect_output(
+    a <- tester(strategy = "smart", spinner = FALSE, verbose = TRUE),
+    regexp = "Running 'smart' strategy"
+  )
+
+  expect_output(
+    a <- tester(strategy = "simple", spinner = FALSE, verbose = TRUE),
+    regexp = "Running 'simple' strategy"
+  )
+})
+
+# arguments that control the verbosity of the output. spinner doesn't work on
+# non-interactive sessions, so we skip its tests
+
 test_that("echo_cmd argument works", {
-  # using spinner = FALSE to make sure it doesn't mess up with the test
   expect_output(
     a <- tester(echo_cmd = TRUE, spinner = FALSE),
     regexp = "^Running osmium extract"
@@ -106,6 +141,26 @@ test_that("echo_cmd argument works", {
   expect_identical(output, character(0))
 })
 
-# spinner doesn't work on non-interactive sessions and none of the queries calls
-# we have generated output anything to stdout/stderr, so we're skipping the
-# 'spinner' and 'echo' argument tests
+test_that("echo argument works", {
+  expect_output(
+    a <- tester(echo = TRUE, spinner = FALSE, verbose = TRUE),
+    regexp = "^\\[ 0:00\\] Started osmium extract"
+  )
+
+  output <- capture.output(
+    a <- tester(echo = FALSE, spinner = FALSE, verbose = TRUE)
+  )
+  expect_identical(output, character(0))
+})
+
+test_that("verbose argument works", {
+  expect_output(
+    a <- tester(echo = TRUE, spinner = FALSE, verbose = TRUE),
+    regexp = "^\\[ 0:00\\] Started osmium extract"
+  )
+
+  output <- capture.output(
+    a <- tester(echo = TRUE, spinner = FALSE, verbose = FALSE)
+  )
+  expect_identical(output, character(0))
+})
