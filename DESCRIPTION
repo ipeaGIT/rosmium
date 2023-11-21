@@ -11,9 +11,11 @@ URL: https://github.com/dhersz/rosmium
 BugReports: https://github.com/dhersz/rosmium/issues
 Imports: 
     checkmate,
+    fansi,
     geojsonsf,
     processx,
-    sf
+    sf,
+    utils
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
