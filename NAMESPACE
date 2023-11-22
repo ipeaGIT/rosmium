@@ -2,4 +2,5 @@
 
 export(assert_osmium_is_installed)
 export(extract)
+export(show_content)
 export(tags_filter)

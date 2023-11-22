@@ -62,18 +62,6 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "fansi",
-      "name": "fansi",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=fansi"
-    },
-    "3": {
-      "@type": "SoftwareApplication",
       "identifier": "geojsonsf",
       "name": "geojsonsf",
       "provider": {
@@ -84,7 +72,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=geojsonsf"
     },
-    "4": {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "processx",
       "name": "processx",
@@ -96,7 +84,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=processx"
     },
-    "5": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -108,14 +96,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "6": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "648.541KB",
+  "fileSize": "652.299KB",
   "readme": "https://github.com/dhersz/rosmium/blob/main/README.md",
   "contIntegration": ["https://github.com/dhersz/rosmium/actions?query=workflow%3Acheck", "https://app.codecov.io/gh/dhersz/rosmium?branch=main"],
   "developmentStatus": "https://www.repostatus.org/#concept",
