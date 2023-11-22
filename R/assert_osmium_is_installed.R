@@ -8,7 +8,7 @@
 #' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 #' assert_osmium_is_installed()
 #'
-#' @export
+#' @keywords internal
 assert_osmium_is_installed <- function() {
   is_installed <- tryCatch(
     processx::run("osmium", "--version"),

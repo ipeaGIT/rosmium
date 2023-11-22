@@ -18,3 +18,4 @@ Asserts Osmium is installed, throwing an error otherwise.
 assert_osmium_is_installed()
 \dontshow{\}) # examplesIf}
 }
+\keyword{internal}
