@@ -67,7 +67,7 @@
 <div class="page-header"><h1 id="rosmium">rosmium<a class="anchor" aria-label="anchor" href="#rosmium"></a>
 </h1></div>
 <p><a href="https://CRAN.R-project.org/package=rosmium" class="external-link"><img src="https://www.r-pkg.org/badges/version/rosmium" alt="CRAN status"></a> <a href="https://github.com/dhersz/rosmium/actions?query=workflow%3Acheck" class="external-link"><img src="https://github.com/dhersz/rosmium/workflows/check/badge.svg" alt="B status"></a> <a href="https://app.codecov.io/gh/dhersz/rosmium?branch=main" class="external-link"><img src="https://codecov.io/gh/dhersz/rosmium/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://www.repostatus.org/#concept" class="external-link"><img src="https://www.repostatus.org/badges/latest/concept.svg" alt="Repo status"></a></p>
-<p>Allows one to use Osmium from R. Osmium is a multipurpose command line tool for working with OpenStreetMap.</p>
+<p><strong>rosmium</strong> allows one to use <a href="https://osmcode.org/osmium-tool/" class="external-link">Osmium Tool</a> from R. Osmium is a multipurpose command line tool that enables one to manipulate and analyze OpenStreetMap (OSM) files through several different commands. Currently, this package does not aim to offer functions that cover the entirety of Osmium’s API, instead making available functions that wrap only a very limited set of Osmium’s features.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -75,6 +75,87 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dhersz/rosmium"</span><span class="op">)</span></span></code></pre></div>
+<p>Please note that <strong>rosmium</strong> requires Osmium to be installed and added to the PATH environment variable of your local system. For instructions on how to install Osmium, please check <a href="https://osmcode.org/osmium-tool/#download" class="external-link">its official website</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>The package currently includes only three entrypoints to Osmium’s API. To demonstrate them, we will use some sample data bundled with the package.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dhersz/rosmium" class="external-link">rosmium</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cur_pbf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/cur.osm.pbf"</span>, package <span class="op">=</span> <span class="st">"rosmium"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cur_pbf_lines</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">cur_pbf</span>, layer <span class="op">=</span> <span class="st">"lines"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cur_pbf_lines</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
+<div class="section level3">
+<h3 id="extract">
+<code>extract()</code><a class="anchor" aria-label="anchor" href="#extract"></a>
+</h3>
+<p><code><a href="reference/extract.html">extract()</a></code> creates geographical extracts from OSM files. In its most basic form, the function takes the path to the OSM file whose geographical extent should be extracted from, the extent, either as a bounding box or as a (multi)polygon, and the path to the file where the output should be written to. Additionally, the function can also take the strategy to be used when creating the extract, which defaults to <code>"complete_ways"</code>. Please check the function documentation for details on the available strategies and their behavior.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># buffering the pbf bounding box 4000 meters inward and using the result</span></span>
+<span><span class="co"># extent to extract the osm data inside it. transforming the crs because</span></span>
+<span><span class="co"># inward buffers only work with projected crs</span></span>
+<span></span>
+<span><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">cur_pbf_lines</span><span class="op">)</span></span>
+<span><span class="va">bbox_polygon</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html" class="external-link">st_as_sfc</a></span><span class="op">(</span><span class="va">bbox</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">smaller_bbox_poly</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html" class="external-link">st_buffer</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="va">bbox_polygon</span>, <span class="fl">5880</span><span class="op">)</span>, <span class="op">-</span><span class="fl">4000</span><span class="op">)</span></span>
+<span><span class="va">smaller_bbox_poly</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="va">smaller_bbox_poly</span>, <span class="fl">4326</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">output_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/extract.html">extract</a></span><span class="op">(</span></span>
+<span>  <span class="va">cur_pbf</span>,</span>
+<span>  <span class="va">smaller_bbox_poly</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".osm.pbf"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; -\| </span></span>
+<span></span>
+<span><span class="va">extracted_pbf_lines</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">output_path</span>, layer <span class="op">=</span> <span class="st">"lines"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">extracted_pbf_lines</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">smaller_bbox_poly</span>, color <span class="op">=</span> <span class="st">"red"</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="tags_filter">
+<code>tags_filter()</code><a class="anchor" aria-label="anchor" href="#tags_filter"></a>
+</h3>
+<p><code><a href="reference/tags_filter.html">tags_filter()</a></code> filters OSM files, keeping objects matching at least one of the specified expressions from the input. In its most basic form, the function takes the path to the OSM file to which the filters should be applied, the filter expressions that should be applied and the path to the file where the output should be written to. Please check the function documentation for a description of the filter expression format.</p>
+<p>By default, not only the objects matching the expressions will be kept in the output, but also the objects referenced by them. This behavior can be changed with the <code>omit_referenced</code> parameter. The function also includes the <code>invert_match</code> parameter, that inverts the sense of matching (excluding objects that match the filters), and the <code>remove_tags</code> parameter, used to remove tags from objects that are referenced by objects matching the filters, but which do not match the filter themselves. Both arguments default to <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># get all amenity nodes</span></span>
+<span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tags_filter.html">tags_filter</a></span><span class="op">(</span><span class="va">cur_pbf</span>, <span class="st">"n/amenity"</span>, <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".osm.pbf"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; - </span></span>
+<span><span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">output</span>, layer <span class="op">=</span> <span class="st">"points"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">other_tags</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "\"amenity\"=&gt;\"university\",\"wikidata\"=&gt;\"Q10278991\""                                                                  </span></span>
+<span><span class="co">#&gt; [2] "\"amenity\"=&gt;\"telephone\",\"operator\"=&gt;\"OI\",\"payment:telephone_cards\"=&gt;\"yes\""                                     </span></span>
+<span><span class="co">#&gt; [3] "\"amenity\"=&gt;\"kindergarten\""                                                                                            </span></span>
+<span><span class="co">#&gt; [4] "\"addr:housenumber\"=&gt;\"45\",\"addr:street\"=&gt;\"Rua Amintas de Barros\",\"amenity\"=&gt;\"restaurant\",\"cuisine\"=&gt;\"arab\""</span></span>
+<span><span class="co">#&gt; [5] "\"addr:city\"=&gt;\"Curitiba\",\"addr:housenumber\"=&gt;\"1250\",\"addr:street\"=&gt;\"Rua 7 de Abril\",\"amenity\"=&gt;\"pub\""      </span></span>
+<span><span class="co">#&gt; [6] "\"amenity\"=&gt;\"taxi\""</span></span>
+<span></span>
+<span><span class="co"># get all objects (nodes, ways or relations) with an addr:* tag</span></span>
+<span><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tags_filter.html">tags_filter</a></span><span class="op">(</span></span>
+<span>  <span class="va">cur_pbf</span>,</span>
+<span>  <span class="st">"addr:*"</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".osm.pbf"</span><span class="op">)</span>,</span>
+<span>  omit_referenced <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; - </span></span>
+<span><span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">output</span>, layer <span class="op">=</span> <span class="st">"points"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">nodes</span><span class="op">$</span><span class="va">other_tags</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "\"addr:city\"=&gt;\"Curitiba\",\"addr:housenumber\"=&gt;\"358\",\"addr:postcode\"=&gt;\"80510-190\",\"addr:street\"=&gt;\"Rua Mateus Leme\",\"addr:suburb\"=&gt;\"Centro Cívico\",\"brand\"=&gt;\"Ibis\",\"brand:wikidata\"=&gt;\"Q920166\",\"brand:wikipedia\"=&gt;\"en:Ibis (hotel)\",\"tourism\"=&gt;\"hotel\""</span></span>
+<span><span class="co">#&gt; [2] "\"addr:city\"=&gt;\"Curitiba\",\"addr:country\"=&gt;\"BR\",\"addr:housenumber\"=&gt;\"1975\",\"addr:street\"=&gt;\"Avenida Marechal Deodoro\""                                                                                                                                                     </span></span>
+<span><span class="co">#&gt; [3] "\"addr:city\"=&gt;\"Curitiba\",\"addr:country\"=&gt;\"BR\",\"addr:housenumber\"=&gt;\"2085\",\"addr:street\"=&gt;\"Avenida Marechal Deodoro\""                                                                                                                                                     </span></span>
+<span><span class="co">#&gt; [4] "\"addr:city\"=&gt;\"Curitiba\",\"addr:country\"=&gt;\"BR\",\"addr:housenumber\"=&gt;\"1976\",\"addr:street\"=&gt;\"Avenida Marechal Deodoro\""                                                                                                                                                     </span></span>
+<span><span class="co">#&gt; [5] "\"addr:city\"=&gt;\"Curitiba\",\"addr:country\"=&gt;\"BR\",\"addr:housenumber\"=&gt;\"2086\",\"addr:street\"=&gt;\"Avenida Marechal Deodoro\""                                                                                                                                                     </span></span>
+<span><span class="co">#&gt; [6] "\"addr:city\"=&gt;\"Curitiba\",\"addr:country\"=&gt;\"BR\",\"addr:housenumber\"=&gt;\"965\",\"addr:street\"=&gt;\"Rua José de Alencar\""</span></span></code></pre></div>
+</div>
 </div>
 </div>
   </div>
