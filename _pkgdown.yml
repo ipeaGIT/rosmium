@@ -1,2 +1,12 @@
+reference:
+  - title: "Functions"
+  - contents:
+    - extract
+    - tags_filter
+    - show_content
+  - title: "General documentation"
+  - contents:
+    - file_formats
+
 development:
   mode: auto
