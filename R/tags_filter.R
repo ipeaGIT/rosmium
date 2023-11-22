@@ -1,8 +1,8 @@
 #' Filter objects matching specified keys/tags
 #'
 #' Get objects matching at least one of the specified expressions from the input
-#' and write them to the output. All objects matching the expressions will kept
-#' in the output, and objects referenced by them will also be added to the
+#' and write them to the output. All objects matching the expressions will be
+#' kept in the output, and objects referenced by them will also be added to the
 #' output (unless `omit_referenced = TRUE`). Objects will be written out in the
 #' order they are found in the input. Please note that the function will only
 #' work correctly on history files if `omit_referenced` is `TRUE`, and it cannot

@@ -98,7 +98,7 @@ file.size(pbf_path)
 
 # buffering the pbf bounding box 4000 meters inward and using the result
 # extent to extract the osm data inside it. transforming the crs because
-# inward buffers only work with project crs
+# inward buffers only work with projected crs
 
 lines <- sf::st_read(pbf_path, layer = "lines", quiet = TRUE)
 bbox <- sf::st_bbox(lines)
