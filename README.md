@@ -75,9 +75,9 @@ smaller_bbox_poly <- sf::st_transform(smaller_bbox_poly, 4326)
 output_path <- extract(
   cur_pbf,
   smaller_bbox_poly,
-  tempfile(fileext = ".osm.pbf")
+  tempfile(fileext = ".osm.pbf"),
+  spinner = FALSE
 )
-#> -\| 
 
 extracted_pbf_lines <- sf::st_read(output_path, layer = "lines", quiet = TRUE)
 
@@ -125,9 +125,9 @@ output <- tags_filter(
   cur_pbf,
   "addr:*",
   tempfile(fileext = ".osm.pbf"),
-  omit_referenced = TRUE
+  omit_referenced = TRUE,
+  spinner = FALSE
 )
-#> - 
 nodes <- sf::st_read(output, layer = "points", quiet = TRUE)
 head(nodes$other_tags)
 #> [1] "\"addr:city\"=>\"Curitiba\",\"addr:housenumber\"=>\"358\",\"addr:postcode\"=>\"80510-190\",\"addr:street\"=>\"Rua Mateus Leme\",\"addr:suburb\"=>\"Centro Cívico\",\"brand\"=>\"Ibis\",\"brand:wikidata\"=>\"Q920166\",\"brand:wikipedia\"=>\"en:Ibis (hotel)\",\"tourism\"=>\"hotel\""
@@ -137,3 +137,29 @@ head(nodes$other_tags)
 #> [5] "\"addr:city\"=>\"Curitiba\",\"addr:country\"=>\"BR\",\"addr:housenumber\"=>\"2086\",\"addr:street\"=>\"Avenida Marechal Deodoro\""                                                                                                                                                     
 #> [6] "\"addr:city\"=>\"Curitiba\",\"addr:country\"=>\"BR\",\"addr:housenumber\"=>\"965\",\"addr:street\"=>\"Rua José de Alencar\""
 ```
+
+### `show_content()`
+
+Finally, `show_content()` displays the content of an OSM file either in
+`.html`, `.xml` or `.opl` format. The function takes as input the path
+to the OSM file whose content should be shown, the output format in
+which the content should be displayed (defaulting to `.html`, the most
+human readable format, although also the slowest to open and inspect,
+depending on the size of the input file) and the type of objects that
+should be included in the output (defaulting to all existing objects in
+the input). The function returns the path to the temporary file in which
+the OSM file content was saved and opens the content in the web browser
+or the most appropriate application, depending on the output format.
+
+``` r
+# displays the content of the previous tags_filter() output in html format
+show_content(output, spinner = FALSE)
+#> [1] "/tmp/RtmpcMcyMH/osm_contentbd722a30bbd.html"
+```
+
+<img src="man/figures/filtered_file_content.png" width="100%" />
+
+## Acknowledgement
+
+We would like to thank the authors and contributors of Osmium for the
+development of [Osmium Tool](https://github.com/osmcode/osmium-tool).
