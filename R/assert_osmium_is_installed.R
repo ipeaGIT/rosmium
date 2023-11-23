@@ -5,9 +5,6 @@
 #' @return Throws an error if Osmium is not installed, invisibly returns `TRUE`
 #'   otherwise.
 #'
-#' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-#' assert_osmium_is_installed()
-#'
 #' @keywords internal
 assert_osmium_is_installed <- function() {
   is_installed <- tryCatch(

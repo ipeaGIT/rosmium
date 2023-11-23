@@ -13,9 +13,4 @@ otherwise.
 \description{
 Asserts Osmium is installed, throwing an error otherwise.
 }
-\examples{
-\dontshow{if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-assert_osmium_is_installed()
-\dontshow{\}) # examplesIf}
-}
 \keyword{internal}
