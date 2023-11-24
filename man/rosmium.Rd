@@ -26,7 +26,7 @@ Please check the vignette for more on the package usage:
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ipeagit.github.io/rosmium}
+  \item \url{https://ipeagit.github.io/rosmium/}
   \item \url{https://github.com/ipeaGIT/rosmium}
   \item Report bugs at \url{https://github.com/ipeaGIT/rosmium/issues}
 }

@@ -4,9 +4,9 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/rosmium)](https://CRAN.R-project.org/package=rosmium)
 [![B
-status](https://github.com/dhersz/rosmium/workflows/check/badge.svg)](https://github.com/dhersz/rosmium/actions?query=workflow%3Acheck)
+status](https://github.com/ipeaGIT/rosmium/workflows/check/badge.svg)](https://github.com/ipeaGIT/rosmium/actions?query=workflow%3Acheck)
 [![Codecov test
-coverage](https://codecov.io/gh/dhersz/rosmium/branch/main/graph/badge.svg)](https://app.codecov.io/gh/dhersz/rosmium?branch=main)
+coverage](https://codecov.io/gh/ipeaGIT/rosmium/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ipeaGIT/rosmium?branch=main)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
@@ -24,7 +24,7 @@ Development version:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("dhersz/rosmium")
+remotes::install_github("ipeaGIT/rosmium")
 ```
 
 Please note that **rosmium** requires Osmium to be installed and added
@@ -154,7 +154,7 @@ or the most appropriate application, depending on the output format.
 ``` r
 # displays the content of the previous tags_filter() output in html format
 show_content(output, spinner = FALSE)
-#> [1] "/tmp/RtmpcvrR7F/osm_content72fa5b4c2018.html"
+#> [1] "/tmp/RtmpcvrR7F/osm_content72fa2e992ee.html"
 ```
 
 <img src="man/figures/filtered_file_content.png" width="721" />

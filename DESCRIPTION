@@ -1,6 +1,6 @@
 Package: rosmium
 Title: Bindings for Osmium Tool
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Daniel", "Herszenhut", , "dhersz@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8066-1105"))
@@ -11,7 +11,7 @@ Description: Allows one to use Osmium Tool from R. Osmium is a
     entirety of Osmium’s API, instead making available functions that wrap
     only a very limited set of Osmium’s features.
 License: MIT + file LICENSE
-URL: https://ipeagit.github.io/rosmium, https://github.com/ipeaGIT/rosmium
+URL: https://ipeagit.github.io/rosmium/, https://github.com/ipeaGIT/rosmium
 BugReports: https://github.com/ipeaGIT/rosmium/issues
 Imports: 
     checkmate,
