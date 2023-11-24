@@ -47,6 +47,30 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.0.0",
@@ -115,7 +139,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "836.695KB",
+  "fileSize": "842.732KB",
   "readme": "https://github.com/ipeaGIT/rosmium/blob/main/README.md",
   "contIntegration": ["https://github.com/dhersz/rosmium/actions?query=workflow%3Acheck", "https://app.codecov.io/gh/dhersz/rosmium?branch=main"],
   "developmentStatus": "https://www.repostatus.org/#concept",
