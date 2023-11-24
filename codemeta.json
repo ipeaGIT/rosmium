@@ -4,8 +4,8 @@
   "identifier": "rosmium",
   "description": "Allows one to use Osmium from R. Osmium is a multipurpose command line tool for working with OpenStreetMap.",
   "name": "rosmium: Osmium Wrapper",
-  "codeRepository": "https://github.com/dhersz/rosmium",
-  "issueTracker": "https://github.com/dhersz/rosmium/issues",
+  "codeRepository": "https://github.com/ipeaGIT/rosmium",
+  "issueTracker": "https://github.com/ipeaGIT/rosmium/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.0.0.9000",
   "programmingLanguage": {
@@ -115,8 +115,8 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "731.608KB",
-  "readme": "https://github.com/dhersz/rosmium/blob/main/README.md",
+  "fileSize": "836.41KB",
+  "readme": "https://github.com/ipeaGIT/rosmium/blob/main/README.md",
   "contIntegration": ["https://github.com/dhersz/rosmium/actions?query=workflow%3Acheck", "https://app.codecov.io/gh/dhersz/rosmium?branch=main"],
   "developmentStatus": "https://www.repostatus.org/#concept",
   "keywords": ["openstreetmap", "osm", "osmium", "r"]

@@ -7,8 +7,8 @@ Authors@R:
 Description: Allows one to use Osmium from R. Osmium is a multipurpose
     command line tool for working with OpenStreetMap.
 License: MIT + file LICENSE
-URL: https://github.com/dhersz/rosmium
-BugReports: https://github.com/dhersz/rosmium/issues
+URL: https://github.com/ipeaGIT/rosmium
+BugReports: https://github.com/ipeaGIT/rosmium/issues
 Imports: 
     checkmate,
     geojsonsf,
