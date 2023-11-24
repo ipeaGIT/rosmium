@@ -7,8 +7,8 @@ status](https://www.r-pkg.org/badges/version/rosmium)](https://CRAN.R-project.or
 status](https://github.com/dhersz/rosmium/workflows/check/badge.svg)](https://github.com/dhersz/rosmium/actions?query=workflow%3Acheck)
 [![Codecov test
 coverage](https://codecov.io/gh/dhersz/rosmium/branch/main/graph/badge.svg)](https://app.codecov.io/gh/dhersz/rosmium?branch=main)
-[![Repo
-status](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 **rosmium** allows one to use [Osmium
 Tool](https://osmcode.org/osmium-tool/) from R. Osmium is a multipurpose
@@ -154,7 +154,7 @@ or the most appropriate application, depending on the output format.
 ``` r
 # displays the content of the previous tags_filter() output in html format
 show_content(output, spinner = FALSE)
-#> [1] "/tmp/RtmpcvrR7F/osm_content72fa21d39d4b.html"
+#> [1] "/tmp/RtmpcvrR7F/osm_content72fa5b4c2018.html"
 ```
 
 <img src="man/figures/filtered_file_content.png" width="721" />
