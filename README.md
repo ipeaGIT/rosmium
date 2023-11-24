@@ -49,7 +49,7 @@ cur_pbf_lines <- sf::st_read(cur_pbf, layer = "lines", quiet = TRUE)
 ggplot(cur_pbf_lines) + geom_sf()
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+![](man/figures/README-unnamed-chunk-2-1.png)<!-- -->
 
 ### `extract()`
 
@@ -86,7 +86,7 @@ ggplot() +
   geom_sf(data = smaller_bbox_poly, color = "red", fill = NA)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+![](man/figures/README-unnamed-chunk-3-1.png)<!-- -->
 
 ### `tags_filter()`
 
@@ -154,10 +154,10 @@ or the most appropriate application, depending on the output format.
 ``` r
 # displays the content of the previous tags_filter() output in html format
 show_content(output, spinner = FALSE)
-#> [1] "/tmp/RtmpHTYZ4f/osm_content36271afb6bcd.html"
+#> [1] "/tmp/RtmpcvrR7F/osm_content72fa21d39d4b.html"
 ```
 
-<img src="man/figures/filtered_file_content.png" width="100%" />
+<img src="man/figures/filtered_file_content.png" width="721" />
 
 ## Acknowledgement
 
