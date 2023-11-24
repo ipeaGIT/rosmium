@@ -95,7 +95,7 @@
 #'
 #' @return The normalized path to the output file.
 #'
-#' @examples
+#' @examplesIf identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 #' pbf_path <- system.file("extdata/cur.osm.pbf", package = "rosmium")
 #'
 #' # get all amenity nodes

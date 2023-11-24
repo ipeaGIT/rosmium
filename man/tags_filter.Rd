@@ -132,6 +132,7 @@ that have an additional "type=multipolygon" or "type=boundary" tag.
 }
 
 \examples{
+\dontshow{if (identical(tolower(Sys.getenv("NOT_CRAN")), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 pbf_path <- system.file("extdata/cur.osm.pbf", package = "rosmium")
 
 # get all amenity nodes
@@ -160,5 +161,5 @@ ways <- sf::st_read(output, layer = "lines", quiet = TRUE)
 head(ways$highway)
 relations <- sf::st_read(output, layer = "other_relations", quiet = TRUE)
 head(relations$other_tags)
-
+\dontshow{\}) # examplesIf}
 }
