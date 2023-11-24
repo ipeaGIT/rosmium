@@ -1,11 +1,15 @@
 Package: rosmium
-Title: Osmium Wrapper
+Title: Bindings for Osmium Tool
 Version: 0.0.0.9000
 Authors@R: 
     person("Daniel", "Herszenhut", , "dhersz@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8066-1105"))
-Description: Allows one to use Osmium from R. Osmium is a multipurpose
-    command line tool for working with OpenStreetMap.
+Description: Allows one to use Osmium Tool from R. Osmium is a
+    multipurpose command line tool that enables one to manipulate and
+    analyze OpenStreetMap (OSM) files through several different commands.
+    Currently, this package does not aim to offer functions that cover the
+    entirety of Osmium’s API, instead making available functions that wrap
+    only a very limited set of Osmium’s features.
 License: MIT + file LICENSE
 URL: https://github.com/ipeaGIT/rosmium
 BugReports: https://github.com/ipeaGIT/rosmium/issues
