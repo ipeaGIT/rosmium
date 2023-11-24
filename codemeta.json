@@ -4,6 +4,7 @@
   "identifier": "rosmium",
   "description": "Allows one to use Osmium Tool from R. Osmium is a multipurpose command line tool that enables one to manipulate and analyze OpenStreetMap (OSM) files through several different commands. Currently, this package does not aim to offer functions that cover the entirety of Osmium’s API, instead making available functions that wrap only a very limited set of Osmium’s features.",
   "name": "rosmium: Bindings for Osmium Tool",
+  "relatedLink": "https://ipeagit.github.io/rosmium",
   "codeRepository": "https://github.com/ipeaGIT/rosmium",
   "issueTracker": "https://github.com/ipeaGIT/rosmium/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -139,7 +140,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "842.732KB",
+  "fileSize": "844.823KB",
   "readme": "https://github.com/ipeaGIT/rosmium/blob/main/README.md",
   "contIntegration": ["https://github.com/dhersz/rosmium/actions?query=workflow%3Acheck", "https://app.codecov.io/gh/dhersz/rosmium?branch=main"],
   "developmentStatus": "https://www.repostatus.org/#concept",
