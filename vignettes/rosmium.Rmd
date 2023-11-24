@@ -48,7 +48,7 @@ website](https://osmcode.org/osmium-tool/#download).
 The package currently includes only three entrypoints to Osmium's API. To
 demonstrate them, we will use some sample data bundled with the package.
 
-```{r, eval = requireNamespace("ggplot2", quietly = TRUE)}
+```{r, eval = requireNamespace("ggplot2", quietly = TRUE), fig.width = 6, fig.height = 5.5}
 library(rosmium)
 library(ggplot2)
 
@@ -69,7 +69,7 @@ Additionally, the function can also take the strategy to be used when creating
 the extract, which defaults to `"complete_ways"`. Please check the function
 documentation for details on the available strategies and their behavior.
 
-```{r, eval = requireNamespace("ggplot2", quietly = TRUE)}
+```{r, eval = requireNamespace("ggplot2", quietly = TRUE), fig.width = 6, fig.height = 4.5}
 # buffering the pbf bounding box 4000 meters inward and using the result
 # extent to extract the osm data inside it. transforming the crs because
 # inward buffers only work with projected crs
