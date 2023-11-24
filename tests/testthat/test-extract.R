@@ -1,3 +1,5 @@
+testthat::skip_on_cran()
+
 pbf_path <- system.file("extdata/cur.osm.pbf", package = "rosmium")
 
 lines <- sf::st_read(pbf_path, layer = "lines", quiet = TRUE)

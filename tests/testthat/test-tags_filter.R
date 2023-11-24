@@ -1,3 +1,5 @@
+testthat::skip_on_cran()
+
 pbf_path <- system.file("extdata/cur.osm.pbf", package = "rosmium")
 
 tester <- function(input_path = pbf_path,

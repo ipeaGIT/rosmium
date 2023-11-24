@@ -1,3 +1,5 @@
+testthat::skip_on_cran()
+
 tester <- function(output_path, overwrite = FALSE) {
   assert_output_path_multi_ext(output_path, overwrite)
 }
