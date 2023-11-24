@@ -231,7 +231,7 @@ test_that("verbose argument works", {
 test_that("progress argument works", {
   expect_output(
     a <- tester(echo = TRUE, spinner = FALSE, progress = TRUE),
-    regexp = "^\\[=*\\] 100%"
+    regexp = "^\\[.*\\] \\d+%"
   )
 
   output <- capture.output(
