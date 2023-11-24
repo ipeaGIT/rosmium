@@ -154,12 +154,14 @@ or the most appropriate application, depending on the output format.
 ``` r
 # displays the content of the previous tags_filter() output in html format
 show_content(output, spinner = FALSE)
-#> [1] "/tmp/RtmpcMcyMH/osm_contentbd722a30bbd.html"
+#> [1] "/tmp/RtmpHTYZ4f/osm_content36271afb6bcd.html"
 ```
 
 <img src="man/figures/filtered_file_content.png" width="100%" />
 
 ## Acknowledgement
 
-We would like to thank the authors and contributors of Osmium for the
-development of [Osmium Tool](https://github.com/osmcode/osmium-tool).
+**rosmium** is developed by a team at the Institute for Applied Economic
+Research (Ipea), Brazil. We would like to thank the authors and
+contributors of Osmium for the development of [Osmium
+Tool](https://github.com/osmcode/osmium-tool).

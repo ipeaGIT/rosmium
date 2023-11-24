@@ -151,5 +151,7 @@ knitr::include_graphics("man/figures/filtered_file_content.png")
 
 ## Acknowledgement
 
-We would like to thank the authors and contributors of Osmium for the
-development of [Osmium Tool](https://github.com/osmcode/osmium-tool).
+**rosmium** is developed by a team at the Institute for Applied Economic
+Research (Ipea), Brazil. We would like to thank the authors and contributors of
+Osmium for the development of [Osmium
+Tool](https://github.com/osmcode/osmium-tool).
