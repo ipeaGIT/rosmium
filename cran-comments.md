@@ -1,3 +1,9 @@
+## Resubmission
+
+This is a resubmission. Our latest submission got flagged for not wrapping
+Osmium Tool/Osmium in single quotes and for not adding a web reference to the
+software.
+
 ## Test environments
 
 - Local Ubuntu 22.04 installation (R 4.3.2)

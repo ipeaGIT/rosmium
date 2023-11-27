@@ -8,3 +8,4 @@
 ^README\.html$
 ^_pkgdown\.yml$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
