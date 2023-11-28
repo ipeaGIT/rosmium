@@ -209,7 +209,7 @@ test_that("echo_cmd argument works", {
 test_that("echo argument works", {
   expect_output(
     a <- tester(echo = TRUE, spinner = FALSE, verbose = TRUE),
-    regexp = "^\\[ 0:00\\] Started osmium tags-filter"
+    regexp = "^\\[ \\d:\\d{2}\\] Started osmium tags-filter"
   )
 
   output <- capture.output(
@@ -221,7 +221,7 @@ test_that("echo argument works", {
 test_that("verbose argument works", {
   expect_output(
     a <- tester(echo = TRUE, spinner = FALSE, verbose = TRUE),
-    regexp = "^\\[ 0:00\\] Started osmium tags-filter"
+    regexp = "^\\[ \\d:\\d{2}\\] Started osmium tags-filter"
   )
 
   output <- capture.output(

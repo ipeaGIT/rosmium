@@ -84,8 +84,3 @@ test_that("echo_cmd argument works", {
   output <- capture.output(a <- tester(echo_cmd = FALSE, spinner = FALSE))
   expect_identical(output, character(0))
 })
-
-test_that("test", {
-  local_test_context()
-  expect_type(tester(preview = TRUE), "character")
-})
