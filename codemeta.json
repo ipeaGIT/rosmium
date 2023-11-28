@@ -4,17 +4,23 @@
   "identifier": "rosmium",
   "description": "Allows one to use 'Osmium Tool' (<https://osmcode.org/osmium-tool/>) from R. 'Osmium' is a multipurpose command line tool that enables one to manipulate and analyze OpenStreetMap files through several different commands. Currently, this package does not aim to offer functions that cover the entire 'Osmium' API, instead making available functions that wrap only a very limited set of its features.",
   "name": "rosmium: Bindings for 'Osmium Tool'",
-  "relatedLink": "https://ipeagit.github.io/rosmium/",
+  "relatedLink": ["https://ipeagit.github.io/rosmium/", "https://CRAN.R-project.org/package=rosmium"],
   "codeRepository": "https://github.com/ipeaGIT/rosmium",
   "issueTracker": "https://github.com/ipeaGIT/rosmium/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.1.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -140,7 +146,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "842.448KB",
+  "fileSize": "842.453KB",
   "releaseNotes": "https://github.com/ipeaGIT/rosmium/blob/master/NEWS.md",
   "readme": "https://github.com/ipeaGIT/rosmium/blob/main/README.md",
   "contIntegration": ["https://github.com/ipeaGIT/rosmium/actions?query=workflow%3Acheck", "https://app.codecov.io/gh/ipeaGIT/rosmium?branch=main"],
