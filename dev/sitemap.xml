@@ -1,45 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/rosmium.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assert_osmium_is_installed.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extract.html</loc>
-  </url>
-  <url>
-    <loc>/reference/file_formats.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rosmium.html</loc>
-  </url>
-  <url>
-    <loc>/reference/show_content.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tags_filter.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://ipeagit.github.io/rosmium/dev/LICENSE-text.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/LICENSE.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/articles/index.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/articles/rosmium.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/authors.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/index.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/news/index.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/reference/assert_osmium_is_installed.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/reference/extract.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/reference/file_formats.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/reference/index.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/reference/rosmium.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/reference/show_content.html</loc></url>
+<url><loc>https://ipeagit.github.io/rosmium/dev/reference/tags_filter.html</loc></url>
 </urlset>
+
