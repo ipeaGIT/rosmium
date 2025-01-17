@@ -12,11 +12,7 @@ jobs:
       run:
         shell: bash -l {0}
 
-    runs-on: ubuntu-20.04
-
-    env:
-      RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v4
@@ -24,6 +20,7 @@ jobs:
       - name: Setup conda
         uses: conda-incubator/setup-miniconda@v2
         with:
+          miniconda-version: latest
           activate-environment: my-env
 
       - name: Update PATH env variable to include conda bin dir (Linux and MacOS)
@@ -31,7 +28,7 @@ jobs:
         if: runner.os != 'Windows'
 
       - name: Install osmium
-        run: conda install -c conda-forge osmium-tool 
+        run: conda install -c conda-forge osmium-tool
 
       - uses: r-lib/actions/setup-pandoc@v2
 
