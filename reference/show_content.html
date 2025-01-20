@@ -114,31 +114,26 @@ saved.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">"osm.pbf"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  omit_referenced <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># both function calls below result in outputs with the same object types</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">show_content</span><span class="op">(</span><span class="va">small_pbf</span>, object_type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -\ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C:\\Users\\B14912846767\\AppData\\Local\\Temp\\7\\RtmpKcPcS1\\osm_content2054a922640.html"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpMNfsH0/osm_content2054a922640.html"</span>
 <span class="r-in"><span><span class="fu">show_content</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">small_pbf</span>,</span></span>
 <span class="r-in"><span>  object_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"node"</span>, <span class="st">"way"</span>, <span class="st">"relation"</span>, <span class="st">"changeset"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -\ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C:\\Users\\B14912846767\\AppData\\Local\\Temp\\7\\RtmpKcPcS1\\osm_content205453fe5b2f.html"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpMNfsH0/osm_content205453fe5b2f.html"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># only show nodes and ways</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">show_content</span><span class="op">(</span><span class="va">small_pbf</span>, object_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"node"</span>, <span class="st">"way"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C:\\Users\\B14912846767\\AppData\\Local\\Temp\\7\\RtmpKcPcS1\\osm_content205446337b5e.html"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpMNfsH0/osm_content205446337b5e.html"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># display all objects in xml format</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">show_content</span><span class="op">(</span><span class="va">small_pbf</span>, output_format <span class="op">=</span> <span class="st">"xml"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -\ </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "C:\\Users\\B14912846767\\AppData\\Local\\Temp\\7\\RtmpKcPcS1\\osm_content20545a826a6c.xml"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpMNfsH0/osm_content20545a826a6c.xml"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
