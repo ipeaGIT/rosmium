@@ -1,7 +1,9 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
-pkgdown_sha: ~
+pandoc: '3.2'
+pkgdown: 2.1.1.9000
+pkgdown_sha: 6615322cb2ce15b1effcecf894123c88fa10b9c9
 articles:
   rosmium: rosmium.html
-last_built: 2023-11-28T15:03Z
-
+last_built: 2025-01-20T13:32Z
+urls:
+  reference: https://ipeagit.github.io/rosmium/reference
+  article: https://ipeagit.github.io/rosmium/articles
