@@ -31,7 +31,7 @@ jobs:
         if: runner.os != 'Windows'
 
       - name: Install osmium
-        run: conda install -c conda-forge osmium-tool
+        run: conda install -c conda-forge osmium-tool=1.16.0
 
       - uses: r-lib/actions/setup-r@v2
 
