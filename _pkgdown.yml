@@ -13,6 +13,7 @@ reference:
     - extract
     - tags_filter
     - show_content
+    - time_filter
   - title: "General documentation"
   - contents:
     - file_formats
