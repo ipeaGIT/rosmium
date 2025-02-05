@@ -121,3 +121,45 @@ test_that("Spinner Flag Functionality", {
   )
   expect_true(file.exists(filtered_file_path))
 })
+
+test_that("Swapped Timestamps Autoswapped", {
+  output <- tempfile(fileext = ".osh.pbf")
+
+  expect_warning(
+    filtered_file_path <- time_filter(
+      input_path = pbf_path,
+      timestamp = c("2015-06-01T00:00:00Z", "2015-01-01T00:00:00Z"),
+      output_path = output,
+      spinner = FALSE
+    ),
+    regexp = "The first timestamp was later than the second"
+  )
+})
+
+test_that("missing osh extension for two timestamps", {
+  output <- tempfile(fileext = ".osm.pbf")
+
+  expect_warning(
+    filtered_file_path <- time_filter(
+      input_path = pbf_path,
+      timestamp = c("2015-01-01T00:00:00Z", "2015-06-01T00:00:00Z"),
+      output_path = output,
+      spinner = FALSE
+    ),
+    regexp = "the output file does not have an '.osh.pbf'"
+  )
+})
+
+test_that("one time stamp is in incorrect format", {
+  output <- tempfile(fileext = ".osh.pbf")
+
+  expect_error(
+    filtered_file_path <- time_filter(
+      input_path = pbf_path,
+      timestamp = c("2015-01-01T00:00:00Z", "20150601T00:00:00Z"),
+      output_path = output,
+      spinner = FALSE
+    ),
+    regexp = "Invalid timestamp format"
+  )
+})
