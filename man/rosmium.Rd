@@ -3,7 +3,6 @@
 \docType{package}
 \name{rosmium}
 \alias{rosmium}
-\alias{_PACKAGE}
 \alias{rosmium-package}
 \title{rosmium: Bindings for Osmium Tool}
 \description{
